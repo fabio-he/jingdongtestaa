@@ -1,0 +1,185 @@
+{
+  "model" : {
+    "name" : "浮点数",
+    "desc" : "",
+    "stages" : [ {
+      "containers" : [ {
+        "@type" : "trigger",
+        "id" : "0",
+        "name" : "构建触发",
+        "elements" : [ {
+          "@type" : "manualTrigger",
+          "name" : "手动触发",
+          "id" : "T-1-1-1",
+          "canElementSkip" : true,
+          "useLatestParameters" : false,
+          "executeCount" : 1,
+          "version" : "1.*",
+          "classType" : "manualTrigger",
+          "taskAtom" : "",
+          "atomCode" : "manualTrigger",
+          "elementEnable" : true
+        } ],
+        "params" : [ ],
+        "containerId" : "0",
+        "containerHashId" : "c-60bb0120dea643c5a6b46072ba5a8482",
+        "matrixGroupFlag" : false,
+        "classType" : "trigger"
+      } ],
+      "id" : "stage-1",
+      "name" : "stage-1",
+      "tag" : [ "28ee946a59f64949a74f3dee40a1bda4" ],
+      "fastKill" : false,
+      "finally" : false
+    }, {
+      "containers" : [ {
+        "@type" : "vmBuild",
+        "id" : "1",
+        "name" : "构建环境-Linux",
+        "elements" : [ {
+          "@type" : "linuxScript",
+          "name" : "Bash",
+          "id" : "e-08f027f8d8e743839214de9254138f86",
+          "scriptType" : "SHELL",
+          "script" : "# 通过./xxx.sh的方式执行脚本. 即若脚本中未指定解释器，则使用系统默认的shell\n\n# 旧的${}引用变量的方式已升级为${{}}，和bash原生引用变量的方式区分开\n\n# 通过::set-variable命令字设置/修改全局变量\n# echo \"::set-variable name=<var_name>::<value>\"\n# 在后续的插件表单中使用表达式${{variables.<var_name>}}引用这个变量\n# 注意：旧的通过setEnv设置变量的方式仍然保留，但存在一些历史问题，已停止迭代，不再推荐使用\n\n# 通过::set-output命令字设置当前步骤的输出(变量隔离，不会被覆盖)\n# echo \"::set-output name=<output_name>::<value>\"\n# 在后续的插件表单中使用表达式${{jobs.<job_id>.steps.<step_id>.outputs.<output_name>}}引用这个输出，其中job_id和step_id在对应的Job和Task上配置\n\n# 在质量红线中创建自定义指标后，通过setGateValue函数设置指标值\n# setGateValue \"CodeCoverage\" $myValue\n# 然后在质量红线选择相应指标和阈值。若不满足，流水线在执行时将会被卡住\n\n# cd $WORKSPACE 可进入当前工作空间目录\n# sleep 5s\n\necho ${startTime}",
+          "continueNoneZero" : false,
+          "enableArchiveFile" : false,
+          "archiveFile" : "",
+          "additionalOptions" : {
+            "enable" : true,
+            "continueWhenFailed" : false,
+            "manualSkip" : false,
+            "retryWhenFailed" : false,
+            "retryCount" : 1,
+            "manualRetry" : false,
+            "timeout" : 900,
+            "timeoutVar" : "900",
+            "runCondition" : "PRE_TASK_SUCCESS",
+            "pauseBeforeExec" : false,
+            "subscriptionPauseUser" : "v_jingdhe",
+            "otherTask" : "",
+            "customVariables" : [ {
+              "key" : "param1",
+              "value" : ""
+            } ],
+            "customCondition" : "",
+            "enableCustomEnv" : false,
+            "customEnv" : [ {
+              "key" : "param1",
+              "value" : ""
+            } ]
+          },
+          "executeCount" : 1,
+          "version" : "1.*",
+          "classType" : "linuxScript",
+          "taskAtom" : "",
+          "atomCode" : "linuxScript",
+          "elementEnable" : true
+        } ],
+        "baseOS" : "LINUX",
+        "vmNames" : [ ],
+        "maxQueueMinutes" : 60,
+        "maxRunningMinutes" : 900,
+        "buildEnv" : { },
+        "dispatchType" : {
+          "buildType" : "PUBLIC_DEVCLOUD",
+          "value" : "tlinux3",
+          "persistence" : false,
+          "imageType" : "BKSTORE",
+          "credentialId" : "",
+          "credentialProject" : "",
+          "imageCode" : "tlinux3",
+          "imageVersion" : "2.*",
+          "imageName" : "tlinux3_CI镜像",
+          "dockerBuildVersion" : "tlinux3",
+          "imagePublicFlag" : false,
+          "imageRDType" : "",
+          "recommendFlag" : true
+        },
+        "showBuildResource" : false,
+        "enableExternal" : false,
+        "containerId" : "1",
+        "containerHashId" : "c-83dcdb6bebf64f81800156a6aef35e1b",
+        "jobControlOption" : {
+          "enable" : true,
+          "prepareTimeout" : 10,
+          "timeout" : 900,
+          "timeoutVar" : "900",
+          "runCondition" : "STAGE_RUNNING",
+          "customVariables" : [ {
+            "key" : "param1",
+            "value" : ""
+          } ],
+          "customCondition" : "",
+          "dependOnType" : "ID",
+          "dependOnId" : [ ],
+          "dependOnName" : "",
+          "continueWhenFailed" : false
+        },
+        "jobId" : "job_4bd",
+        "matrixGroupFlag" : false,
+        "nfsSwitch" : false,
+        "classType" : "vmBuild"
+      } ],
+      "id" : "stage-2",
+      "name" : "stage-2",
+      "tag" : [ "28ee946a59f64949a74f3dee40a1bda4" ],
+      "fastKill" : false,
+      "finally" : false,
+      "checkIn" : {
+        "manualTrigger" : false,
+        "timeout" : 24,
+        "markdownContent" : false,
+        "notifyType" : [ "RTX" ]
+      },
+      "checkOut" : {
+        "manualTrigger" : false,
+        "timeout" : 24,
+        "markdownContent" : false,
+        "notifyType" : [ "RTX" ]
+      }
+    } ],
+    "labels" : [ ],
+    "instanceFromTemplate" : false,
+    "pipelineCreator" : "v_jingdhe",
+    "events" : { },
+    "staticViews" : [ ],
+    "latestVersion" : 6
+  },
+  "setting" : {
+    "projectId" : "test-01",
+    "pipelineId" : "p-22d2049261514bfba81212c55f8fda64",
+    "pipelineName" : "浮点数",
+    "desc" : "",
+    "runLockType" : "MULTIPLE",
+    "successSubscription" : {
+      "types" : [ "RTX", "EMAIL" ],
+      "groups" : [ "" ],
+      "users" : "${BK_CI_START_USER_NAME}",
+      "wechatGroupFlag" : false,
+      "wechatGroup" : "",
+      "wechatGroupMarkdownFlag" : false,
+      "detailFlag" : true,
+      "content" : "【${BK_CI_PROJECT_NAME_CN}】- 【${BK_CI_PIPELINE_NAME}】#${BK_CI_BUILD_NUM} 执行成功，耗时${BK_CI_BUILD_TOTAL_TIME}, 触发人: ${BK_CI_START_USER_NAME}。"
+    },
+    "failSubscription" : {
+      "types" : [ "RTX", "EMAIL" ],
+      "groups" : [ "" ],
+      "users" : "${BK_CI_START_USER_NAME}",
+      "wechatGroupFlag" : false,
+      "wechatGroup" : "",
+      "wechatGroupMarkdownFlag" : false,
+      "detailFlag" : true,
+      "content" : "【${BK_CI_PROJECT_NAME_CN}】- 【${BK_CI_PIPELINE_NAME}】#${BK_CI_BUILD_NUM} 执行失败，耗时${BK_CI_BUILD_TOTAL_TIME}, 触发人: ${BK_CI_START_USER_NAME}。"
+    },
+    "labels" : [ ],
+    "waitQueueTimeMinute" : 1,
+    "maxQueueSize" : 10,
+    "concurrencyGroup" : "${{ci.pipeline_id}}",
+    "concurrencyCancelInProgress" : false,
+    "maxPipelineResNum" : 50,
+    "maxConRunningQueueSize" : 50,
+    "version" : 0,
+    "cleanVariablesWhenRetry" : false
+  }
+}
